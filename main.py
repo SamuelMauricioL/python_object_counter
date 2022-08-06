@@ -30,6 +30,8 @@ th, threshed = cv2.threshold(
 # findcontours
 contours = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2]
 
+
+# filter by area
 stride_min = 3
 stride_max = 20
 xcnts = []
