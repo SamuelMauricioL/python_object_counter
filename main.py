@@ -17,6 +17,13 @@ BASE_HEIGHT = int(BASE_WIDTH * height / width)
 resized_image = cv2.resize(image_gray, (BASE_WIDTH, BASE_HEIGHT))
 
 # threshold
+'''
+El humbral(threshold) es el rango definido en la escala de grises
+    - gray_scale_range_min
+    - gray_scale_range_max
+este rango es usado para filtrar todos los valores fuera de este rango
+e invertir la escala de pixeles aplicando THRESH_BINARY_INV + THRESH_OTSU
+'''
 gray_scale_range_min = 100
 gray_scale_range_max = 255
 
@@ -24,8 +31,11 @@ th, threshed = cv2.threshold(
     resized_image,
     gray_scale_range_min,
     gray_scale_range_max,
-    cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU,
+    cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU,
 )
+
+# cv2.imshow("img", threshed)
+# cv2.waitKey(0)
 
 # findcontours
 contours = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2]
@@ -38,8 +48,5 @@ contours_detected = []
 for contour in contours:
     if stride_min < cv2.contourArea(contour) < stride_max:
         contours_detected.append(contour)
-
-# cv2.imshow("img", threshed)
-# cv2.waitKey(0)
 
 print("\nDots number: {}".format(len(contours_detected)))
