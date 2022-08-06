@@ -34,12 +34,12 @@ contours = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2
 # filter by area
 stride_min = 3
 stride_max = 20
-xcnts = []
+contours_detected = []
 for contour in contours:
     if stride_min < cv2.contourArea(contour) < stride_max:
-        xcnts.append(contour)
+        contours_detected.append(contour)
 
 # cv2.imshow("img", threshed)
 # cv2.waitKey(0)
 
-print("\nDots number: {}".format(len(xcnts)))
+print("\nDots number: {}".format(len(contours_detected)))
