@@ -28,14 +28,14 @@ th, threshed = cv2.threshold(
 )
 
 # findcontours
-cnts = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2]
+contours = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2]
 
 stride_min = 3
 stride_max = 20
 xcnts = []
-for cnt in cnts:
-    if stride_min < cv2.contourArea(cnt) < stride_max:
-        xcnts.append(cnt)
+for contour in contours:
+    if stride_min < cv2.contourArea(contour) < stride_max:
+        xcnts.append(contour)
 
 # cv2.imshow("img", threshed)
 # cv2.waitKey(0)
