@@ -1,1 +1,3 @@
-print('python_object_counter')
+import cv2
+
+path ="assets/black_dot.jpg"
