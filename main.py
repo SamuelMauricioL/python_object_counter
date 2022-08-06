@@ -16,11 +16,14 @@ height, width = image_gray.shape[:2]
 BASE_HEIGHT = int(BASE_WIDTH * height / width)
 resized_image = cv2.resize(image_gray, (BASE_WIDTH, BASE_HEIGHT))
 
+# threshold
+gray_scale_range_min = 100
+gray_scale_range_max = 255
 
 th, threshed = cv2.threshold(
     resized_image,
-    100,
-    255,
+    gray_scale_range_min,
+    gray_scale_range_max,
     cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU,
 )
 
