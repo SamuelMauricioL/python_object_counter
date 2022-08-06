@@ -10,7 +10,7 @@ image_gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
 ### Resize Image
 """
 Es necesario hacer un resize de la image deacuerdo al BASE_WITDH
-para no afectar los limites de los stride's(s1 && s2) definidos 
+para no afectar los limites de los stride's(stride_min && stride_max) definidos 
 """
 height, width = image_gray.shape[:2]
 BASE_HEIGHT = int(BASE_WIDTH * height / width)
@@ -27,13 +27,14 @@ th, threshed = cv2.threshold(
     cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU,
 )
 
+# findcontours
 cnts = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2]
 
-s1 = 3
-s2 = 20
+stride_min = 3
+stride_max = 20
 xcnts = []
 for cnt in cnts:
-    if s1 < cv2.contourArea(cnt) < s2:
+    if stride_min < cv2.contourArea(cnt) < stride_max:
         xcnts.append(cnt)
 
 # cv2.imshow("img", threshed)
