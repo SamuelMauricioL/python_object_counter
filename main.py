@@ -1,7 +1,5 @@
 import cv2
 
-# from PIL import Image
-
 IMAGE_PATH = "assets/colors_dot.jpg"
 BASE_WIDTH = 100
 
