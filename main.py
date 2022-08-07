@@ -3,7 +3,7 @@ import cv2
 # from PIL import Image
 
 IMAGE_PATH = "assets/colors_dot.jpg"
-BASE_WIDTH = 200
+BASE_WIDTH = 100
 
 image_gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
 
@@ -42,8 +42,8 @@ contours = cv2.findContours(threshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2
 
 
 # filter by area
-stride_min = 3
-stride_max = 20
+stride_min = 10
+stride_max = 30
 contours_detected = []
 for contour in contours:
     if stride_min < cv2.contourArea(contour) < stride_max:
